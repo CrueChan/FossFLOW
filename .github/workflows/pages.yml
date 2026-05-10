@@ -41,16 +41,16 @@ jobs:
       # GitHub Pages returns 404.html when encountering an unknown path.
       # This ensures that the React application loads correctly when refreshing any arbitrary sub-path.
       - name: Fix SPA routing (copy index.html → 404.html)
-        run: cp packages/fossflow-app/dist/index.html packages/fossflow-app/dist/404.html
+        run: cp packages/fossflow-app/build/index.html packages/fossflow-app/build/404.html
 
       # ── Write Custom Domain CNAME File ──
       - name: Write CNAME
-        run: echo "flow.nobita.club" > packages/fossflow-app/dist/CNAME
+        run: echo "flow.nobita.club" > packages/fossflow-app/build/CNAME
         # Replace with the subdomain you are actually using.
         
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: packages/fossflow-app/dist
+          publish_dir: packages/fossflow-app/build
           force_orphan: true    # The `gh-pages` branch retains only the latest build and does not accumulate history.
