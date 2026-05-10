@@ -28,6 +28,11 @@ jobs:
 
       - name: Build
         run: npm run build
+
+        # ← Add this temporarily, run it once, and then check the Actions logs to verify the actual path.
+      - name: Debug - locate build output
+        run: find . -name "index.html" | grep -v node_modules | grep -v e2e
+        
         # When deploying to the root path using a custom domain, there is no need to set `BASE_URL`.
         # If deploying to the `/FossFLOW/` subpath instead, change it to:
         # run: BASE_URL=/FossFLOW/ npm run build
